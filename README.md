@@ -18,3 +18,18 @@ Or by this way:
 ```Shell
   $ bash <(wget -O- http://tools.tisrop.com/ssr.sh)
 ```
+
+
+bbr.sh
+------
+Auto install latest kernel for TCP BBR
+
+Easy way:
+```Shell
+  $ bash <(curl http://tools.tisrop.com/bbr.sh)
+```
+
+Or by this way:
+```Shell
+  $ bash <(wget -O- http://tools.tisrop.com/bbr.sh)
+```
