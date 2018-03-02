@@ -4,8 +4,9 @@ export PATH
 #=================================================================#
 #   System Required:  CentOS 6,7, Debian, Ubuntu                  #
 #   Description: One click Install ShadowsocksR Server            #
-#   Author: Teddysun <i@teddysun.com>                             #
+#   Author: EchoShoot <http://about.tisrop.com>                   #
 #   Thanks: @breakwa11 <https://twitter.com/breakwa11>            #
+#           @Teddysun  <i@teddysun.com>                           #
 #   Intro:  https://shadowsocks.be/9.html                         #
 #=================================================================#
 
@@ -14,7 +15,7 @@ echo
 echo "#############################################################"
 echo "# One click Install ShadowsocksR Server                     #"
 echo "# Intro: https://shadowsocks.be/9.html                      #"
-echo "# Author: Teddysun <i@teddysun.com> & EchoShoot             #"
+echo "# Author: Teddysun & EchoShoot                              #"
 echo "# Github: https://github.com/shadowsocksr/shadowsocksr      #"
 echo "#############################################################"
 echo
@@ -193,7 +194,7 @@ pre_install(){
 	fi
 	# Set ShadowsocksR config password
 	echo "Please enter password for ShadowsocksR:"
-	read -p "(Default password: teddysun.com):" shadowsockspwd
+	read -p "(Default password: echoshoot):" shadowsockspwd
 	[ -z "${shadowsockspwd}" ] && shadowsockspwd="echoshoot"
 	echo
 	echo "---------------------------"
