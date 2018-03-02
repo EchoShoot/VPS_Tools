@@ -11,11 +11,10 @@ Auto Install ShadowsocksR Server for CentOS/Debian/Ubuntu
 
 Easy way:
 ```Shell
-  $ wget -qO- http://tools.tisrop.com/ssr.sh | bash
+  $ bash <(curl http://tools.tisrop.com/ssr.sh)
 ```
 
 Or by this way:
 ```Shell
-  $ wget --no-check-certificate http://tools.tisrop.com/ssr.sh && chmod +x ssr.sh
-  $ ./ssr.sh 2>&1 | tee ssr.log
+  $ bash <(wget -O- http://tools.tisrop.com/ssr.sh)
 ```
