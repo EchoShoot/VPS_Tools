@@ -440,7 +440,7 @@ install(){
 		echo -e "Your obfs             : \033[41;37m ${shadowsockobfs} \033[0m"
 		echo -e "Your Encryption Method: \033[41;37m ${shadowsockscipher} \033[0m"
 		echo
-		echo "Welcome to visit:https://shadowsocks.be/9.html"
+		echo "For more tools, Welcome to visit: http://tools.tisrop.com"
 		echo "Enjoy it!"
 		echo
 	else
