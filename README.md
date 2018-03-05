@@ -1,9 +1,17 @@
 # Tools
 
-some tools collection and adjusted to use for easier
+some tools collection and adjusted to use VPS for easier
 
+SSR Client
+------
+* [download for Windows](https://github.com/EchoShoot/tools/releases/download/v1.0/ShadowsocksR-4.7.0-win.7z)
+* [download for Android](https://github.com/EchoShoot/tools/releases/download/v1.0/shadowsocksr-release.apk)
+* [download for MacOS](https://github.com/EchoShoot/tools/releases/download/v1.0/ShadowsocksX-NG-R8.dmg)
+
+
+VPS Script
+------
 * [ssr.sh](#ssrsh) - auto install ShadowsocksR
-
 
 ssr.sh
 ------
