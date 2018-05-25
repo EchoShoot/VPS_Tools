@@ -26,11 +26,11 @@ shadowsocks_r_file="shadowsocksr-3.2.2"
 shadowsocks_r_url="https://github.com/shadowsocksrr/shadowsocksr/archive/3.2.2.tar.gz"
 
 #Config Table
-tools_password = echoshoot
-tools_port = 443 # replace with `$(shuf -i 9000-19999 -n 1)` will be random
-tools_ciphers_index = 2  # aes-256-cfb
-tools_protocol_index = 6  # auth_aes128_sha1
-tools_obfs_index = 6  # tls1.2_ticket_auth
+tools_password="echoshoot"
+tools_port=443 # replace with `$(shuf -i 9000-19999 -n 1)` will be random
+tools_ciphers_index=2  # aes-256-cfb
+tools_protocol_index=6  # auth_aes128_sha1
+tools_obfs_index=6  # tls1.2_ticket_auth
 
 #Current folder
 cur_dir=`pwd`
