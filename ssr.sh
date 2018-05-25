@@ -29,7 +29,7 @@ shadowsocks_r_url="https://github.com/shadowsocksrr/shadowsocksr/archive/3.2.2.t
 tools_password="echoshoot"
 tools_port=443 # replace with `$(shuf -i 9000-19999 -n 1)` will be random
 tools_ciphers_index=2  # aes-256-cfb
-tools_protocol_index=6  # auth_aes128_sha1
+tools_protocols_index=6  # auth_aes128_sha1
 tools_obfs_index=6  # tls1.2_ticket_auth
 
 #Current folder
@@ -239,7 +239,7 @@ pre_install(){
 		hint="${ciphers[$i-1]}"
 		echo -e "${green}${i}${plain}) ${hint}"
 	done
-	read -p "Which cipher you'd select(Default: ${ciphers[1]}):" pick
+	read -p "Which cipher you'd select(Default: ${ciphers[${tools_ciphers_index}-1]}):" pick
 	[ -z "$pick" ] && pick=${tools_ciphers_index}
 	expr ${pick} + 1 &>/dev/null
 	if [ $? -ne 0 ]; then
@@ -267,8 +267,8 @@ pre_install(){
 		hint="${protocols[$i-1]}"
 		echo -e "${green}${i}${plain}) ${hint}"
 	done
-	read -p "Which protocol you'd select(Default: ${protocols[0]}):" protocol
-	[ -z "$protocol" ] && protocol=${tools_protocol_index}
+	read -p "Which protocol you'd select(Default: ${protocols[${tools_protocols_index}-1]}):" protocol
+	[ -z "$protocol" ] && protocol=${tools_protocols_index}
 	expr ${protocol} + 1 &>/dev/null
 	if [ $? -ne 0 ]; then
 		echo -e "[${red}Error${plain}] Input error, please input a number"
@@ -295,7 +295,7 @@ pre_install(){
 		hint="${obfs[$i-1]}"
 		echo -e "${green}${i}${plain}) ${hint}"
 	done
-	read -p "Which obfs you'd select(Default: ${obfs[0]}):" r_obfs
+	read -p "Which obfs you'd select(Default: ${obfs[${tools_obfs_index}-1]}):" r_obfs
 	[ -z "$r_obfs" ] && r_obfs=${tools_obfs_index}
 	expr ${r_obfs} + 1 &>/dev/null
 	if [ $? -ne 0 ]; then
