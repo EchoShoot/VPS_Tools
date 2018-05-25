@@ -22,6 +22,15 @@ echo
 
 libsodium_file="libsodium-1.0.16"
 libsodium_url="https://github.com/jedisct1/libsodium/releases/download/1.0.16/libsodium-1.0.16.tar.gz"
+shadowsocks_r_file="shadowsocksr-3.2.2"
+shadowsocks_r_url="https://github.com/shadowsocksrr/shadowsocksr/archive/3.2.2.tar.gz"
+
+#Config Table
+tools_password = echoshoot
+tools_port = 443 # replace with `$(shuf -i 9000-19999 -n 1)` will be random
+tools_ciphers_index = 2  # aes-256-cfb
+tools_protocol_index = 6  # auth_aes128_sha1
+tools_obfs_index = 6  # tls1.2_ticket_auth
 
 #Current folder
 cur_dir=`pwd`
@@ -194,8 +203,8 @@ pre_install(){
 	fi
 	# Set ShadowsocksR config password
 	echo "Please enter password for ShadowsocksR:"
-	read -p "(Default password: echoshoot):" shadowsockspwd
-	[ -z "${shadowsockspwd}" ] && shadowsockspwd="echoshoot"
+	read -p "(Default password: ${tools_password}):" shadowsockspwd
+	[ -z "${shadowsockspwd}" ] && shadowsockspwd=${tools_password}
 	echo
 	echo "---------------------------"
 	echo "password = ${shadowsockspwd}"
@@ -204,7 +213,7 @@ pre_install(){
 	# Set ShadowsocksR config port & default is 443
 	while true
 	do
-	dport=443
+	dport=${tools_port}
 	echo -e "Please enter a port for ShadowsocksR [1-65535]"
 	read -p "(Default port: ${dport}):" shadowsocksport
 	[ -z "${shadowsocksport}" ] && shadowsocksport=${dport}
@@ -231,7 +240,7 @@ pre_install(){
 		echo -e "${green}${i}${plain}) ${hint}"
 	done
 	read -p "Which cipher you'd select(Default: ${ciphers[1]}):" pick
-	[ -z "$pick" ] && pick=2
+	[ -z "$pick" ] && pick=${tools_ciphers_index}
 	expr ${pick} + 1 &>/dev/null
 	if [ $? -ne 0 ]; then
 		echo -e "[${red}Error${plain}] Please enter a number"
@@ -258,8 +267,8 @@ pre_install(){
 		hint="${protocols[$i-1]}"
 		echo -e "${green}${i}${plain}) ${hint}"
 	done
-	read -p "Which protocol you'd select(Default: ${protocols[5]}):" protocol
-	[ -z "$protocol" ] && protocol=6
+	read -p "Which protocol you'd select(Default: ${protocols[0]}):" protocol
+	[ -z "$protocol" ] && protocol=${tools_protocol_index}
 	expr ${protocol} + 1 &>/dev/null
 	if [ $? -ne 0 ]; then
 		echo -e "[${red}Error${plain}] Input error, please input a number"
@@ -286,8 +295,8 @@ pre_install(){
 		hint="${obfs[$i-1]}"
 		echo -e "${green}${i}${plain}) ${hint}"
 	done
-	read -p "Which obfs you'd select(Default: ${obfs[5]}):" r_obfs
-	[ -z "$r_obfs" ] && r_obfs=6
+	read -p "Which obfs you'd select(Default: ${obfs[0]}):" r_obfs
+	[ -z "$r_obfs" ] && r_obfs=${tools_obfs_index}
 	expr ${r_obfs} + 1 &>/dev/null
 	if [ $? -ne 0 ]; then
 		echo -e "[${red}Error${plain}] Input error, please input a number"
@@ -327,7 +336,7 @@ download_files(){
 		exit 1
 	fi
 	# Download ShadowsocksR file
-	if ! wget --no-check-certificate -O shadowsocksr-3.2.1.tar.gz https://github.com/shadowsocksrr/shadowsocksr/archive/3.2.1.tar.gz; then
+	if ! wget --no-check-certificate -O ${shadowsocks_r_file}.tar.gz ${shadowsocks_r_url}; then
 		echo -e "[${red}Error${plain}] Failed to download ShadowsocksR file!"
 		exit 1
 	fi
@@ -418,8 +427,8 @@ install(){
 	ldconfig
 	# Install ShadowsocksR
 	cd ${cur_dir}
-	tar zxf shadowsocksr-3.2.1.tar.gz
-	mv shadowsocksr-3.2.1/shadowsocks /usr/local/
+	tar zxf ${shadowsocks_r_file}.tar.gz
+	mv ${shadowsocks_r_file}/shadowsocks /usr/local/
 	if [ -f /usr/local/shadowsocks/server.py ]; then
 		chmod +x /etc/init.d/shadowsocks
 		if check_sys packageManager yum; then
@@ -453,7 +462,7 @@ install(){
 # Install cleanup
 install_cleanup(){
 	cd ${cur_dir}
-	rm -rf shadowsocksr-3.2.1.tar.gz shadowsocksr-3.2.1 ${libsodium_file}.tar.gz ${libsodium_file}
+	rm -rf ${shadowsocks_r_file}.tar.gz ${shadowsocks_r_file} ${libsodium_file}.tar.gz ${libsodium_file}
 }
 
 
