@@ -28,7 +28,7 @@ shadowsocks_r_url="https://github.com/shadowsocksrr/shadowsocksr/archive/3.2.2.t
 #Config Table
 tools_password="echoshoot"
 tools_port=443 # replace with `$(shuf -i 9000-19999 -n 1)` will be random
-tools_ciphers_index=2  # aes-256-cfb
+tools_ciphers_index=11  # chacha20-ietf
 tools_protocols_index=6  # auth_aes128_sha1
 tools_obfs_index=6  # tls1.2_ticket_auth
 
