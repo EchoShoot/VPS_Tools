@@ -1,6 +1,6 @@
 # Tools
 
-One of the easiest way to install SSR or WG on your VPS.
+One of the easiest way to install SSR(ShadowsocksR) or WG(WireGuard) on your VPS.
 
 SSR Client
 ------
@@ -15,30 +15,16 @@ $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/inst
 $ brew install wireguard-tools
 $ mkdir /usr/local/etc/wireguard/
 $ cat > /usr/local/etc/wireguard/wg0.conf << !
-  heredoc> {run "cat /etc/wireguard/client.conf" on your vps and copy to here}
+  heredoc> {please run "cat /etc/wireguard/client.conf" on your vps and copy to here, AFTER "wg.sh" was installed}
   heredoc> !
+$ sudo wg-quick up wg0
 ```
 
 VPS Script
 ------
-* [ssr.sh](#ssrsh) - auto install ShadowsocksR
 * [wg.sh](#wgsh) - auto install WireGuard
+* [ssr.sh](#ssrsh) - auto install ShadowsocksR
 * [bbr.sh](#bbrsh) - auto install TCP BBR
-
-
-ssr.sh
-------
-Auto Install ShadowsocksR Server for CentOS/Debian/Ubuntu
-
-Easy way:
-```Shell
-  $ bash <(wget -O- http://tools.tisrop.com/ssr.sh)
-```
-
-Or by this way:
-```Shell
-  $ bash <(curl http://tools.tisrop.com/ssr.sh)
-```
 
 wg.sh
 ------
@@ -52,6 +38,20 @@ Easy way:
 Or by this way:
 ```Shell
   $ bash <(curl http://tools.tisrop.com/wg.sh)
+```
+
+ssr.sh
+------
+Auto Install ShadowsocksR Server for CentOS/Debian/Ubuntu
+
+Easy way:
+```Shell
+  $ bash <(wget -O- http://tools.tisrop.com/ssr.sh)
+```
+
+Or by this way:
+```Shell
+  $ bash <(curl http://tools.tisrop.com/ssr.sh)
 ```
 
 bbr.sh
