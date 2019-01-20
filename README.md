@@ -1,6 +1,6 @@
 # Tools
 
-some tools collection and adjusted to use VPS for easier
+One of the easiest way to install SSR on your VPS.
 
 SSR Client
 ------
@@ -19,25 +19,26 @@ Auto Install ShadowsocksR Server for CentOS/Debian/Ubuntu
 
 Easy way:
 ```Shell
-  $ bash <(curl http://tools.tisrop.com/ssr.sh)
+  $ bash <(wget -O- http://tools.tisrop.com/ssr.sh)
 ```
 
 Or by this way:
 ```Shell
-  $ bash <(wget -O- http://tools.tisrop.com/ssr.sh)
+  $ bash <(curl http://tools.tisrop.com/ssr.sh)
 ```
+
 
 
 bbr.sh
 ------
-Auto install latest kernel for TCP BBR
+Auto install latest kernel for TCP BBR (It is default supported on Debian 9.0+)
 
 Easy way:
 ```Shell
-  $ bash <(curl http://tools.tisrop.com/bbr.sh)
+  $ bash <(wget -O- http://tools.tisrop.com/bbr.sh)
 ```
 
 Or by this way:
 ```Shell
-  $ bash <(wget -O- http://tools.tisrop.com/bbr.sh)
+  $ bash <(curl http://tools.tisrop.com/bbr.sh)
 ```
