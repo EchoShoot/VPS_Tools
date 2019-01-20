@@ -89,17 +89,15 @@ install_cleanup(){
 
 # install WireGuard
 install(){
+    # 添加 unstable 软件包源，以确保安装版本是最新的
+    echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.list.d/unstable.list
+    printf 'Package: *\nPin: release a=unstable\nPin-Priority: 90\n' > /etc/apt/preferences.d/limit-unstable
     # 更新软件包源
     apt update
     # 安装和 linux-image 内核版本相对于的 linux-headers 内核
     apt install linux-headers-$(uname -r) -y
     # Debian9 安装后内核列表
     dpkg -l|grep linux-headers
-    # 添加 unstable 软件包源，以确保安装版本是最新的
-    echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.list.d/unstable.list
-    printf 'Package: *\nPin: release a=unstable\nPin-Priority: 90\n' > /etc/apt/preferences.d/limit-unstable
-    # 使刚添加的软件包源生效
-    apt update
     # 开始安装 WireGuard ，和辅助库 resolvconf
     apt install wireguard resolvconf -y
     # 验证是否安装成功
@@ -136,6 +134,18 @@ sysctl_config() {
 # Install WireGuard
 install_WireGuard(){
     install
+    # 配置文件夹
+    mkdir -p /etc/wireguard
+    cd /etc/wireguard
+    # 然后开始生成 密匙对(公匙+私匙)。
+    wg genkey | tee sprivatekey | wg pubkey > spublickey
+    wg genkey | tee cprivatekey | wg pubkey > cpublickey
+    Client_PublicKey=$(cat cpublickey)
+    Client_PrivateKey=$(cat cprivatekey)
+    Server_PublicKey=$(cat spublickey)
+    Server_PrivateKey=$(cat sprivatekey)
+    config_wireguard_server
+    config_wireguard_client
     # 开启 BBR
     sysctl_config
     lsmod | grep bbr
