@@ -82,7 +82,7 @@ EOF
 # Install cleanup
 install_cleanup(){
     echo
-    echo "\033[32m $(cat /etc/wireguard/client.conf) \033[0m"
+    echo "$(cat /etc/wireguard/client.conf)"
     echo
 }
 
