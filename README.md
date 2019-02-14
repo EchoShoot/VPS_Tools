@@ -1,4 +1,5 @@
 # Tools
+[![DOI](https://zenodo.org/badge/123516563.svg)](https://zenodo.org/badge/latestdoi/123516563)
 
 One of the easiest way to install SSR(ShadowsocksR) or WG(WireGuard) on your VPS.
 
