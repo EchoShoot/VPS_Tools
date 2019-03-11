@@ -46,7 +46,7 @@ get_ip(){
 Default_DNS="8.8.8.8"
 Default_MTU="1420"
 Server_Ip=$(get_ip)
-Server_Port="443"
+Server_Port=$(shuf -i 9000-19999 -n 1)
 Install_Path="/etc/wireguard"
 
 
@@ -174,11 +174,11 @@ install_WireGuard(){
     config_wireguard
     # 安装后的处理
     after_installed
-    # 显示配置方案
-    show_WireGuard
     # 重启 WireGuard
     wg-quick down wg0
     wg-quick up wg0
+    # 显示配置方案
+    show_WireGuard
 }
 
 
@@ -218,9 +218,6 @@ show_WireGuard(){
     do
         echo -e "      ${Color_info}http://${Server_Ip}:${Server_Port}/${conffile}${Color_end}"
     done
-    echo
-    echo -e "${Color_warning}配置完毕后请手动: ctrl+c 之后才开始生效!${Color_end}"
-    echo
     python -m SimpleHTTPServer ${Server_Port}
     clear
 }
